@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昭和の薫り漂う 自慢のこだわり野菜市場</title>
+    <style>
+        /* 昭和レトロなカラーパレットとフォント設定 */
+        :root {
+            --bg-color: #f4efe4;       /* 懐かしい生成り色の紙のような背景 */
+            --primary-color: #7a382b;  /* 小豆色（あずきいろ） */
+            --secondary-color: #4a5f43;/* 鶯色（うぐいすいろ） */
+            --accent-color: #e29c30;   /* 蜜柑・からし色 */
+            --text-color: #332f2b;     /* 墨色に近い焦茶 */
+            --card-bg: #faf7f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+            line-height: 1.8;
+            padding: 20px;
+            /* ほんのりとしたレトロな空気感を出すための背景微細パターン（オプション） */
+            background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ヘッダーデザイン */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 3px double var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            letter-spacing: 0.2rem;
+            text-shadow: 1px 1px 0px #fff, 2px 2px 0px rgba(0,0,0,0.1);
+            animation: honnori-sway 6s ease-in-out infinite alternate;
+        }
+
+        header p {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* 穏やかな「ほんのりー」とした揺れアニメーション */
+        @keyframes honnori-sway {
+            0% { transform: translateY(0) rotate(-0.5deg); }
+            100% { transform: translateY(-4px) rotate(0.5deg); }
+        }
+
+        /* コンセプト紹介 */
+        .intro-section {
+            background-color: var(--card-bg);
+            border: 1px solid #dcd3be;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 5px 5px 0px rgba(122, 56, 43, 0.1);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* 野菜たちの紹介グリッド */
+        .vegetable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .veg-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .veg-card:hover {
+            transform: scale(1.02) translateY(-2px);
+        }
+
+        .veg-name {
+            font-size: 1.4rem;
+            color: white;
+            background-color: var(--secondary-color);
+            padding: 5px 10px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border-radius: 3px;
+        }
+
+        .veg-desc {
+            font-size: 0.95rem;
+        }
+
+        /* コメント投函伝言板エリア */
+        .board-section {
+            background-color: #fff9ee;
+            border: 2px dashed var(--primary-color);
+            padding: 40px 30px;
+            border-radius: 4px;
+        }
+
+        .board-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 0.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #bfae96;
+            background-color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text-color);
+            border-radius: 4px;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: #fffdf9;
+        }
+
+        /* 思わず押したくなるおもしろボタン */
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .push-button {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            vertical-align: middle;
+            text-decoration: none;
+            background: transparent;
+            padding: 0;
+            font-family: inherit;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .push-button .button-top {
+            display: block;
+            box-sizing: border-box;
+            padding: 16px 32px;
+            border-radius: 50px;
+            border: 2px solid var(--text-color);
+            background: var(--accent-color);
+            color: var(--text-color);
+            transform: translateY(-6px);
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .push-button .button-bottom {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            background: var(--primary-color);
+            border: 2px solid var(--text-color);
+            z-index: -1;
+        }
+
+        /* 押したくなるような「ぷにゅっ」とした反発の動き */
+        .push-button:hover .button-top {
+            transform: translateY(-8px);
+            background: #ffb13b;
+        }
+
+        .push-button:active .button-top {
+            transform: translateY(-2px);
+        }
+
+        /* コメント一覧の表示エリア */
+        .comment-list {
+            margin-top: 40px;
+            border-top: 1px solid #dcd3be;
+            padding-top: 30px;
+        }
+
+        .comment-item {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            animation: honnori-fade 0.5s ease-out;
+        }
+
+        @keyframes honnori-fade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 5px;
+            border-bottom: 1px dotted #e0d9cb;
+            padding-bottom: 30pxpx;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .comment-body {
+            font-size: 1rem;
+            white-space: pre-wrap;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .veg-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>頑固一徹、至高のこだわり野菜</h1>
+        <p>〜 大地と対話し、ほんのり流れる時間の中で育てました 〜</p>
+    </header>
+
+    <section class="intro-section">
+        <h2>私たちのこだわり</h2>
+        <p>土造りから水の一滴にまでこだわり抜き、太陽の光を浴びて丸々と育った自慢の野菜たちです。<br>見た目もでかく、ずっしりとした重みがあり、品質には絶対の自信を持ってお届けします。</p>
+    </section>
+
+    <div class="vegetable-grid">
+        <div class="veg-card">
+            <span class="veg-name">ナス</span>
+            <p class="veg-desc">ずっしりとでかく、深い紫紺の輝き。噛むたびに溢れる瑞々しさと旨味は、まさに畑の芸術品です。</p>
+        </div>
+        <div class="veg-card">
+            <span class="veg-name">ピーマン</span>
+            <p class="veg-desc">肉厚でシャキッと力強い歯ごたえ。独特の苦味の奥に、ほのかな甘みと大地の底力を感じさせます。</p>
+        </div>
+        <div class="veg-card">
+            <span class="veg-name">バジル</span>
+            <p class="veg-desc">ちぎった瞬間に部屋いっぱいに広がる圧倒的な芳醇さ。薫り高さにこだわり抜いた特別な一品です。</p>
+        </div>
+        <div class="veg-card">
+            <span class="veg-name">エダマメ</span>
+            <p class="veg-desc">ふっくらと大きな実が詰まった自慢の莢。茹で上がりの香ばしさと濃厚な甘みは格別の一言。</p>
+        </div>
+        <div class="veg-card">
+            <span class="veg-name">ミニトマト</span>
+            <p class="veg-desc">小さな実に美味しさを極限まで凝縮しました。甘みと酸味の黄金比率が口の中で弾けます。</p>
+        </div>
+    </div>
+
+    <section class="board-section">
+        <h2>昭和のよろず伝言板</h2>
+        <p style="text-align: center; font-size: 0.9rem; margin-bottom: 20px; color: #666;">
+            野菜を食べた感想や、熱い応援メッセージをそっと残していってください。
+        </p>
+
+        <form id="commentForm">
+            <div class="form-group">
+                <label for="userName">お名前（または暖簾名）</label>
+                <input type="text" id="userName" required placeholder="例：八百屋の三吉">
+            </div>
+            <div class="form-group">
+                <label for="commentContent">言伝（メッセージ）</label>
+                <textarea id="commentContent" rows="4" required placeholder="例：ここのナスは本当にでかくて美味い！煮浸しに最高でした。"></textarea>
+            </div>
+            
+            <div class="btn-container">
+                <button type="submit" class="push-button">
+                    <span class="button-bottom"></span>
+                    <span class="button-top">＼ メッセージを投函する！ ／</span>
+                </button>
+            </div>
+        </form>
+
+        <div class="comment-list" id="commentList">
+            </div>
+    </section>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // 【ここに自分のconfigを貼る】
+    const firebaseConfig = {
+    apiKey: "AIzaSyATLSPtvgzFO9LLYrGrzyUZEpnvMGIBg7o",
+    authDomain: "sanntyoku.firebaseapp.com",
+    projectId: "sanntyoku",
+  storageBucket: "sanntyoku.firebasestorage.app",
+  messagingSenderId: "787864470899",
+  appId: "1:787864470899:web:137c424cf59bdd12153106"
+};
+
+    // Firebaseの初期化
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const commentForm = document.getElementById("commentForm");
+    const commentList = document.getElementById("commentList");
+
+    // コメントを取得して表示する関数
+    async function loadComments() {
+        try {
+            // 新しい順（createdAt: desc）にクエリを作成
+            const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
+            const querySnapshot = await getDocs(q);
+            
+            // 一覧をクリア
+            commentList.innerHTML = "";
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                
+                // コメント要素の生成
+                const item = document.createElement("div");
+                item.className = "comment-item";
+
+                const header = document.createElement("div");
+                header.className = "comment-header";
+
+                const nameSpan = document.createElement("span");
+                nameSpan.className = "comment-name";
+                nameSpan.textContent = data.name; // 安全なtextContentを使用
+
+                const dateSpan = document.createElement("span");
+                // 日付のフォーマット処理（サーバータイムスタンプがまだない場合は現在の時刻を表示）
+                const date = data.createdAt ? data.createdAt.toDate() : new Date();
+                dateSpan.textContent = date.toLocaleString("ja-JP");
+
+                const body = document.createElement("div");
+                body.className = "comment-body";
+                body.textContent = data.content; // 安全なtextContentを使用
+
+                // 組み立て
+                header.appendChild(nameSpan);
+                header.appendChild(dateSpan);
+                item.appendChild(header);
+                item.appendChild(body);
+                
+                commentList.appendChild(item);
+            });
+        } catch (error) {
+            console.error("データ取得に失敗しました: ", error);
+        }
+    }
+
+    // フォーム送信時の処理
+    commentForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById("userName");
+        const contentInput = document.getElementById("commentContent");
+
+        try {
+            // addDocを使って保存
+            await addDoc(collection(db, "comments"), {
+                name: nameInput.value,
+                content: contentInput.value,
+                createdAt: serverTimestamp() // サーバー時間を記録
+            });
+
+            // フォームをクリアして再読込
+            nameInput.value = "";
+            contentInput.value = "";
+            await loadComments();
+            
+        } catch (error) {
+            console.error("書き込みに失敗しました: ", error);
+            alert("メッセージの投函に失敗しました。設定を確認してください。");
+        }
+    });
+
+    // 画面を開いたときに初期データを読み込む
+    loadComments();
+</script>
+</body>
+</html>
