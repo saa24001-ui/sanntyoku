@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>昭和の薫り漂う 自慢のこだわり野菜市場</title>
     <style>
-        /* 昭和レトロなカラーパレットとフォント設定 */
+        /* 昭和レトロかつ大人っぽいカラーパレット */
         :root {
-            --bg-color: #f4efe4;       /* 懐かしい生成り色の紙のような背景 */
-            --primary-color: #7a382b;  /* 小豆色（あずきいろ） */
-            --secondary-color: #4a5f43;/* 鶯色（うぐいすいろ） */
-            --accent-color: #e29c30;   /* 蜜柑・からし色 */
-            --text-color: #332f2b;     /* 墨色に近い焦茶 */
-            --card-bg: #faf7f0;
+            --bg-color: #f2ebd9;       /* 経年変化した和紙のような生成り色 */
+            --primary-color: #5c2c22;  /* 深みのある小豆色・こげ茶 */
+            --secondary-color: #3b4d35;/* 落ち着いた渋い鶯色 */
+            --accent-color: #d98a2b;   /* 深みのある山吹色 */
+            --text-color: #2b2824;     /* 煤けた黒 */
+            --card-bg: #faf7f0;        /* 柔らかな白 */
         }
 
         * {
@@ -26,119 +26,225 @@
             color: var(--text-color);
             font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
             line-height: 1.8;
-            padding: 20px;
-            /* ほんのりとしたレトロな空気感を出すための背景微細パターン（オプション） */
-            background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 0);
-            background-size: 24px 24px;
+            padding: 0 0 60px 0;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
-        /* ヘッダーデザイン */
+        /* --- ヘッダー：古い8mmフィルム風動画エフェクト付き --- */
         header {
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 3px double var(--primary-color);
-            margin-bottom: 40px;
             position: relative;
+            text-align: center;
+            padding: 100px 20px;
+            color: #fff;
+            overflow: hidden;
+            margin-bottom: 50px;
+            background: #201715; /* ベースの暗がり */
+        }
+
+        /* 昭和ノスタルジーな揺らめき（フィルム風動画の背景） */
+        .retro-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.35;
+            pointer-events: none;
+            background: radial-gradient(circle, transparent 20%, #000 80%),
+                        linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+        }
+
+        /* 穏やかにうごめく光（ほんのりーとした動きの演出） */
+        .retro-video-bg::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(217, 138, 43, 0.2) 0%, transparent 60%),
+                        radial-gradient(circle, rgba(92, 44, 34, 0.3) 0%, transparent 50%);
+            animation: honnori-flow 18s infinite linear;
+        }
+
+        /* 昭和映画のノイズ（雨や傷のような線） */
+        .retro-video-bg::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 100px);
+            background-size: 200px 100%;
+            animation: film-scratch 0.4s steps(4) infinite;
+        }
+
+        @keyframes honnori-flow {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(180deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes film-scratch {
+            0% { transform: translateX(-10px); opacity: 0.3; }
+            50% { transform: translateX(20px); opacity: 0.5; }
+            100% { transform: translateX(-5px); opacity: 0.2; }
+        }
+
+        header .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            letter-spacing: 0.2rem;
-            text-shadow: 1px 1px 0px #fff, 2px 2px 0px rgba(0,0,0,0.1);
-            animation: honnori-sway 6s ease-in-out infinite alternate;
+            font-size: 2.6rem;
+            color: #f7f2e8;
+            letter-spacing: 0.3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            animation: gentle-sway 5s ease-in-out infinite alternate;
         }
 
         header p {
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 1.1rem;
-            color: var(--secondary-color);
-            font-weight: bold;
+            color: #d9c8b5;
+            letter-spacing: 0.15rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* 穏やかな「ほんのりー」とした揺れアニメーション */
-        @keyframes honnori-sway {
-            0% { transform: translateY(0) rotate(-0.5deg); }
-            100% { transform: translateY(-4px) rotate(0.5deg); }
+        @keyframes gentle-sway {
+            0% { transform: translateY(0) rotate(-0.3deg); }
+            100% { transform: translateY(-3px) rotate(0.3deg); }
         }
 
-        /* コンセプト紹介 */
-        .intro-section {
+        /* --- コンセプト紹介 --- */
+        .concept-card {
             background-color: var(--card-bg);
-            border: 1px solid #dcd3be;
-            padding: 30px;
-            border-radius: 4px;
-            box-shadow: 5px 5px 0px rgba(122, 56, 43, 0.1);
-            margin-bottom: 50px;
+            border: 1px solid rgba(92, 44, 34, 0.15);
+            padding: 40px 30px;
             text-align: center;
-        }
-
-        .intro-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-            display: inline-block;
-            border-bottom: 2px solid var(--accent-color);
-        }
-
-        /* 野菜たちの紹介グリッド */
-        .vegetable-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
+            box-shadow: 0 10px 30px rgba(43, 40, 36, 0.05);
             margin-bottom: 60px;
+            position: relative;
+        }
+
+        /* レトロな飾り枠 */
+        .concept-card::before {
+            content: "";
+            position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px double rgba(92, 44, 34, 0.2);
+            pointer-events: none;
+        }
+
+        .concept-card h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.2rem;
+        }
+
+        .concept-card p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            color: #4a453f;
+        }
+
+        /* --- 野菜ギャラリー --- */
+        .veg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-bottom: 80px;
         }
 
         .veg-card {
             background-color: var(--card-bg);
-            border: 2px solid var(--secondary-color);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 4px 4px 0px var(--secondary-color);
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .veg-card:hover {
-            transform: scale(1.02) translateY(-2px);
+            transform: translateY(-5px);
+        }
+
+        .veg-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background-color: #000;
+        }
+
+        .veg-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(20%) contrast(95%); /* 昭和レトロな色褪せフィルター */
+            transition: transform 0.6s ease;
+        }
+
+        .veg-card:hover .veg-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .veg-info {
+            padding: 25px;
         }
 
         .veg-name {
-            font-size: 1.4rem;
-            color: white;
-            background-color: var(--secondary-color);
-            padding: 5px 10px;
-            display: inline-block;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            border-bottom: 1px solid rgba(59, 77, 53, 0.2);
+            padding-bottom: 10px;
             margin-bottom: 15px;
-            border-radius: 3px;
+            font-weight: bold;
+            letter-spacing: 0.1rem;
         }
 
         .veg-desc {
             font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
         }
 
-        /* コメント投函伝言板エリア */
-        .board-section {
-            background-color: #fff9ee;
-            border: 2px dashed var(--primary-color);
-            padding: 40px 30px;
-            border-radius: 4px;
+        /* --- 伝言板 --- */
+        .bbs-section {
+            background-color: #faf7f0;
+            border: 1px solid rgba(92, 44, 34, 0.15);
+            padding: 50px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
-        .board-section h2 {
-            color: var(--primary-color);
+        .bbs-section h2 {
             text-align: center;
-            margin-bottom: 30px;
-            letter-spacing: 0.1rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.2rem;
+        }
+
+        .bbs-subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 40px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
@@ -146,32 +252,34 @@
             margin-bottom: 8px;
             font-weight: bold;
             color: var(--primary-color);
+            font-size: 0.95rem;
         }
 
         input[type="text"], textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #bfae96;
-            background-color: #fff;
+            padding: 14px;
+            border: 1px solid #ccc5b3;
+            background-color: #fcfbfa;
             font-family: inherit;
             font-size: 1rem;
             color: var(--text-color);
-            border-radius: 4px;
+            border-radius: 0;
+            transition: border-color 0.3s;
         }
 
         input[type="text"]:focus, textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            background-color: #fffdf9;
+            background-color: #fff;
         }
 
-        /* 思わず押したくなるおもしろボタン */
-        .btn-container {
+        /* --- 誰もが押したくなるおもしろレトロボタン --- */
+        .btn-wrapper {
             text-align: center;
-            margin-top: 30px;
+            margin: 40px 0 20px 0;
         }
 
-        .push-button {
+        .danger-button {
             position: relative;
             display: inline-block;
             cursor: pointer;
@@ -182,73 +290,84 @@
             background: transparent;
             padding: 0;
             font-family: inherit;
-            font-size: 1.2rem;
-            font-weight: bold;
         }
 
-        .push-button .button-top {
-            display: block;
-            box-sizing: border-box;
-            padding: 16px 32px;
-            border-radius: 50px;
-            border: 2px solid var(--text-color);
-            background: var(--accent-color);
-            color: var(--text-color);
-            transform: translateY(-6px);
-            transition: transform 0.1s ease, background-color 0.2s ease;
-        }
-
-        .push-button .button-bottom {
+        .button-back {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 50px;
+            border-radius: 4px;
+            background: #2a130f;
+            box-shadow: 0 4px 0px rgba(0,0,0,0.3);
+            transition: all 0.15s ease;
+        }
+
+        .button-front {
+            display: block;
+            position: relative;
+            padding: 18px 40px;
+            border-radius: 4px;
             background: var(--primary-color);
-            border: 2px solid var(--text-color);
-            z-index: -1;
+            color: #f2ebd9;
+            font-weight: bold;
+            font-size: 1.15rem;
+            letter-spacing: 0.1rem;
+            border: 1px solid #7c3a2d;
+            transform: translateY(-6px);
+            transition: transform 0.15s ease, background 0.15s ease;
         }
 
-        /* 押したくなるような「ぷにゅっ」とした反発の動き */
-        .push-button:hover .button-top {
+        /* マウスを乗せるとプルプル動き、押すと本当に凹む */
+        .danger-button:hover .button-front {
             transform: translateY(-8px);
-            background: #ffb13b;
+            background: #6e3529;
+            animation: mini-shake 0.5s ease-in-out infinite alternate;
         }
 
-        .push-button:active .button-top {
-            transform: translateY(-2px);
+        .danger-button:active .button-front {
+            transform: translateY(-1px);
         }
 
-        /* コメント一覧の表示エリア */
-        .comment-list {
-            margin-top: 40px;
-            border-top: 1px solid #dcd3be;
-            padding-top: 30px;
+        .danger-button:active .button-back {
+            box-shadow: 0 1px 0px rgba(0,0,0,0.3);
+        }
+
+        @keyframes mini-shake {
+            0% { transform: translateY(-8px) rotate(-0.5deg); }
+            100% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+
+        /* --- コメント一覧 --- */
+        .comment-area {
+            margin-top: 50px;
+            border-top: 1px double rgba(92, 44, 34, 0.2);
+            padding-top: 40px;
         }
 
         .comment-item {
-            background-color: var(--card-bg);
-            border-left: 5px solid var(--accent-color);
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            animation: honnori-fade 0.5s ease-out;
+            background: #fbf9f3;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            position: relative;
+            animation: honnori-fade 0.6s ease-out;
         }
 
         @keyframes honnori-fade {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .comment-header {
+        .comment-meta {
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
             color: #777;
-            margin-bottom: 5px;
-            border-bottom: 1px dotted #e0d9cb;
-            padding-bottom: 30pxpx;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed rgba(92, 44, 34, 0.1);
+            padding-bottom: 6px;
         }
 
         .comment-name {
@@ -256,79 +375,114 @@
             color: var(--secondary-color);
         }
 
-        .comment-body {
-            font-size: 1rem;
+        .comment-text {
+            font-size: 0.95rem;
             white-space: pre-wrap;
-            margin-top: 8px;
+            color: #333;
         }
 
         @media (max-width: 600px) {
             header h1 { font-size: 1.8rem; }
             .veg-grid { grid-template-columns: 1fr; }
+            .bbs-section { padding: 30px 15px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>頑固一徹、至高のこだわり野菜</h1>
-        <p>〜 大地と対話し、ほんのり流れる時間の中で育てました 〜</p>
-    </header>
+<header>
+    <div class="retro-video-bg"></div>
+    <div class="header-content">
+        <h1>至高ノこだわり、大地の恵み</h1>
+        <p>── 昭和の優しき時間の中で、ただ愚直に、真っ直ぐ育てました。</p>
+    </div>
+</header>
 
-    <section class="intro-section">
-        <h2>私たちのこだわり</h2>
-        <p>土造りから水の一滴にまでこだわり抜き、太陽の光を浴びて丸々と育った自慢の野菜たちです。<br>見た目もでかく、ずっしりとした重みがあり、品質には絶対の自信を持ってお届けします。</p>
+<div class="container">
+    <section class="concept-card">
+        <h2>「でかく、気高く、美しく」</h2>
+        <p>
+            効率ばかりを追い求める現代だからこそ、私たちは手間に妥協しません。<br>
+            土の一粒にまで命を吹き込み、太陽のひかりを存分に浴びせる独自の栽培方法を貫いています。<br>
+            こうして育った自慢の野菜は、どれも圧倒的な大きさと、濃厚な品質を誇る一等品ばかりです。
+        </p>
     </section>
 
-    <div class="vegetable-grid">
+    <div class="veg-grid">
         <div class="veg-card">
-            <span class="veg-name">ナス</span>
-            <p class="veg-desc">ずっしりとでかく、深い紫紺の輝き。噛むたびに溢れる瑞々しさと旨味は、まさに畑の芸術品です。</p>
+            <div class="veg-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80" alt="ナス">
+            </div>
+            <div class="veg-info">
+                <div class="veg-name">茄子（ナス）</div>
+                <p class="veg-desc">ずっしりと深く、妖艶な紫紺。実の締まりが段違いにでかく、噛めば瑞々しい滋味が溢れ出す極上茄子です。</p>
+            </div>
         </div>
+
         <div class="veg-card">
-            <span class="veg-name">ピーマン</span>
-            <p class="veg-desc">肉厚でシャキッと力強い歯ごたえ。独特の苦味の奥に、ほのかな甘みと大地の底力を感じさせます。</p>
+            <div class="veg-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&w=600&q=80" alt="ピーマン">
+            </div>
+            <div class="veg-info">
+                <div class="veg-name">青椒（ピーマン）</div>
+                <p class="veg-desc">厚みがあり艶やかな深緑。心地よい苦味の奥に、昭和の畑を思い起こさせる純朴な甘みが生きています。</p>
+            </div>
         </div>
+
         <div class="veg-card">
-            <span class="veg-name">バジル</span>
-            <p class="veg-desc">ちぎった瞬間に部屋いっぱいに広がる圧倒的な芳醇さ。薫り高さにこだわり抜いた特別な一品です。</p>
+            <div class="veg-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1618386230353-3631c1ca65be?auto=format&fit=crop&w=600&q=80" alt="バジル">
+            </div>
+            <div class="veg-info">
+                <div class="veg-name">目薬草（バジル）</div>
+                <p class="veg-desc">一枚が力強く大ぶりな葉。そっと触れるだけで、部屋中を圧倒的な清涼感で包み込む芳醇な薫り立ちが自慢です。</p>
+            </div>
         </div>
+
         <div class="veg-card">
-            <span class="veg-name">エダマメ</span>
-            <p class="veg-desc">ふっくらと大きな実が詰まった自慢の莢。茹で上がりの香ばしさと濃厚な甘みは格別の一言。</p>
+            <div class="veg-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=600&q=80" alt="エダマメ">
+            </div>
+            <div class="veg-info">
+                <div class="veg-name">枝豆（エダマメ）</div>
+                <p class="veg-desc">ふっくらと見事に膨らんだ莢。湯気とともに漂う濃厚な甘みは、まさに本物の大地のコクを感じさせます。</p>
+            </div>
         </div>
+
         <div class="veg-card">
-            <span class="veg-name">ミニトマト</span>
-            <p class="veg-desc">小さな実に美味しさを極限まで凝縮しました。甘みと酸味の黄金比率が口の中で弾けます。</p>
+            <div class="veg-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1590502593747-42a996133562?auto=format&fit=crop&w=600&q=80" alt="ミニトマト">
+            </div>
+            <div class="veg-info">
+                <div class="veg-name">甘茄子（ミニトマト）</div>
+                <p class="veg-desc">ルビーのように美しい張り裂けんばかりの果肉。ただ甘いだけでなく、調和のとれた絶妙な酸味が五感に響きます。</p>
+            </div>
         </div>
     </div>
 
-    <section class="board-section">
-        <h2>昭和のよろず伝言板</h2>
-        <p style="text-align: center; font-size: 0.9rem; margin-bottom: 20px; color: #666;">
-            野菜を食べた感想や、熱い応援メッセージをそっと残していってください。
-        </p>
+    <section class="bbs-section">
+        <h2>昭和ノよろづ伝言板</h2>
+        <div class="bbs-subtitle">こだわり野菜をご賞味いただいた感想や、暖かな言伝をここに残してください。</div>
 
         <form id="commentForm">
             <div class="form-group">
-                <label for="userName">お名前（または暖簾名）</label>
-                <input type="text" id="userName" required placeholder="例：八百屋の三吉">
+                <label for="userName">お名前 / 屋号</label>
+                <input type="text" id="userName" required placeholder="例：銀座の料理人">
             </div>
             <div class="form-group">
                 <label for="commentContent">言伝（メッセージ）</label>
-                <textarea id="commentContent" rows="4" required placeholder="例：ここのナスは本当にでかくて美味い！煮浸しに最高でした。"></textarea>
+                <textarea id="commentContent" rows="4" required placeholder="例：ナスを煮浸しにしました。箸が止まらないほどでかく、旨い！"></textarea>
             </div>
-            
-            <div class="btn-container">
-                <button type="submit" class="push-button">
-                    <span class="button-bottom"></span>
-                    <span class="button-top">＼ メッセージを投函する！ ／</span>
+
+            <div class="btn-wrapper">
+                <button type="submit" class="danger-button">
+                    <span class="button-back"></span>
+                    <span class="button-front">※絶対に押すな！メッセージを投函する</span>
                 </button>
             </div>
         </form>
 
-        <div class="comment-list" id="commentList">
+        <div class="comment-area" id="commentList">
             </div>
     </section>
 </div>
@@ -338,69 +492,70 @@
     import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     // 【ここに自分のconfigを貼る】
-    const firebaseConfig = {
-    apiKey: "AIzaSyATLSPtvgzFO9LLYrGrzyUZEpnvMGIBg7o",
-    authDomain: "sanntyoku.firebaseapp.com",
-    projectId: "sanntyoku",
+   const firebaseConfig = {
+  apiKey: "AIzaSyATLSPtvgzFO9LLYrGrzyUZEpnvMGIBg7o",
+  authDomain: "sanntyoku.firebaseapp.com",
+  projectId: "sanntyoku",
   storageBucket: "sanntyoku.firebasestorage.app",
   messagingSenderId: "787864470899",
   appId: "1:787864470899:web:137c424cf59bdd12153106"
 };
 
-    // Firebaseの初期化
+    // Firebase初期化
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
     const commentForm = document.getElementById("commentForm");
     const commentList = document.getElementById("commentList");
 
-    // コメントを取得して表示する関数
+    // コメント一覧を取得して描画する関数
     async function loadComments() {
         try {
-            // 新しい順（createdAt: desc）にクエリを作成
+            // 新しい順(createdAt: desc)に一覧を取得
             const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
             const querySnapshot = await getDocs(q);
-            
-            // 一覧をクリア
+
             commentList.innerHTML = "";
 
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
-                
-                // コメント要素の生成
+
+                // 枠の作成
                 const item = document.createElement("div");
                 item.className = "comment-item";
 
-                const header = document.createElement("div");
-                header.className = "comment-header";
+                // ヘッダー情報（名前と日付）
+                const meta = document.createElement("div");
+                meta.className = "comment-meta";
 
                 const nameSpan = document.createElement("span");
                 nameSpan.className = "comment-name";
-                nameSpan.textContent = data.name; // 安全なtextContentを使用
+                nameSpan.textContent = data.name; // textContentを使用して安全に出力
 
                 const dateSpan = document.createElement("span");
-                // 日付のフォーマット処理（サーバータイムスタンプがまだない場合は現在の時刻を表示）
                 const date = data.createdAt ? data.createdAt.toDate() : new Date();
                 dateSpan.textContent = date.toLocaleString("ja-JP");
 
-                const body = document.createElement("div");
-                body.className = "comment-body";
-                body.textContent = data.content; // 安全なtextContentを使用
+                meta.appendChild(nameSpan);
+                meta.appendChild(dateSpan);
+
+                // メッセージ本文
+                const textDiv = document.createElement("div");
+                textDiv.className = "comment-text";
+                textDiv.textContent = data.content; // textContentを使用して安全に出力
 
                 // 組み立て
-                header.appendChild(nameSpan);
-                header.appendChild(dateSpan);
-                item.appendChild(header);
-                item.appendChild(body);
-                
+                item.appendChild(meta);
+                item.appendChild(textDiv);
+
                 commentList.appendChild(item);
             });
         } catch (error) {
-            console.error("データ取得に失敗しました: ", error);
+            console.error("データの読み込みに失敗しました:", error);
         }
     }
 
-    // フォーム送信時の処理
+    // コメント送信時の処理
     commentForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -408,26 +563,27 @@
         const contentInput = document.getElementById("commentContent");
 
         try {
-            // addDocを使って保存
+            // addDocを用いてコメントを送信
             await addDoc(collection(db, "comments"), {
                 name: nameInput.value,
                 content: contentInput.value,
-                createdAt: serverTimestamp() // サーバー時間を記録
+                createdAt: serverTimestamp()
             });
 
-            // フォームをクリアして再読込
+            // フォームの入力を初期化し、一覧を再読み込み
             nameInput.value = "";
             contentInput.value = "";
             await loadComments();
-            
+
         } catch (error) {
-            console.error("書き込みに失敗しました: ", error);
-            alert("メッセージの投函に失敗しました。設定を確認してください。");
+            console.error("データの書き込みに失敗しました:", error);
+            alert("伝言の投函に失敗しました。config設定等をご確認ください。");
         }
     });
 
-    // 画面を開いたときに初期データを読み込む
+    // 読み込み時に初期表示
     loadComments();
 </script>
+
 </body>
 </html>
